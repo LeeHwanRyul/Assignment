@@ -3,16 +3,17 @@ from FourierSeries import FourierSeries
 import matplotlib.pyplot as plt
 
 def SawtoothWave(t, amplitude, period):
+    amplitude *= 2
     return amplitude * ((t % period) / period) - (amplitude / 2)
 
-def PeriodicWave():
+def PeriodicWave(t, amplitude, period):
     return 0
 
 if __name__ == "__main__":
     T = 0.02
     dx = 0.0001
     t = np.arange(0, T * 10, dx)
-    amp = 2
+    amp = 1
 
     x = SawtoothWave(t, amp, T)
 
