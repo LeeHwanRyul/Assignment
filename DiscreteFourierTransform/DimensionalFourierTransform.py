@@ -47,3 +47,6 @@ def InverseDFT_2d(x):
         result[:, j] = InverseDFT(x_[:, j]).flatten()
 
     return result
+
+def LTI_Filter(x, coef = 1):
+    return x * coef
