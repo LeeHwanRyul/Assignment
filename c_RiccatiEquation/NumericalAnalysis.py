@@ -1,9 +1,15 @@
 import numpy as np
 
 def EulerMethod(func, t, initialCondition):
-    x = np.zeros_like(t)
+    try:
+        x = np.zeros_like(t)
 
-    x[0] = initialCondition
+        x[0] = initialCondition
+    except:
+        n = len(t)
+        dim = len(initialCondition)
+        x = np.zeros((n, dim))
+        x[0] = initialCondition
 
     for k in range(len(t) - 1):
         t_k = t[k]
@@ -15,8 +21,15 @@ def EulerMethod(func, t, initialCondition):
     return x
 
 def HeunMethod(func, t, initialCondition):
-    x = np.zeros_like(t)
-    x[0] = initialCondition
+    try:
+        x = np.zeros_like(t)
+
+        x[0] = initialCondition
+    except:
+        n = len(t)
+        dim = len(initialCondition)
+        x = np.zeros((n, dim))
+        x[0] = initialCondition
 
     for k in range(len(t) - 1):
         t_k = t[k]
@@ -32,8 +45,15 @@ def HeunMethod(func, t, initialCondition):
     return x
 
 def RungeKutta2ndMethod(func, t, initialCondition):
-    x = np.zeros_like(t)
-    x[0] = initialCondition
+    try:
+        x = np.zeros_like(t)
+
+        x[0] = initialCondition
+    except:
+        n = len(t)
+        dim = len(initialCondition)
+        x = np.zeros((n, dim))
+        x[0] = initialCondition
 
     for k in range(len(t) - 1):
         t_k = t[k]

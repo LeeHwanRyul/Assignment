@@ -23,16 +23,6 @@ if __name__ == "__main__":
     errorHeun = np.abs(x_ref - x_heun)
     errorRK2 = np.abs(x_ref - x_RK2)
 
-    plt.plot(t, x_ref, label='solve_ivp (accurate)')
-    plt.plot(t, x_euler, '--', label='Euler Method')
-    plt.plot(t, x_heun, '--', label='Heun Method')
-    plt.plot(t, x_RK2, '--', label='RK2 Method')
-    plt.xlabel("t")
-    plt.ylabel("x(t)")
-    plt.legend()
-    plt.grid(True)
-    plt.show()
-
     print("Max Error (Euler) :", np.max(errorEuler))
     print("Max Error (Heun) :", np.max(errorHeun))
     print("Max Error (RK2) :", np.max(errorRK2))
