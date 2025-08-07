@@ -1,9 +1,8 @@
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
-import matplotlib.colors as colors
 
-from DimensionalFourierTransform import DFT, InverseDFT, DFT_2d, InverseDFT_2d
+from DimensionalFourierTransform import DFT, InverseDFT, DFT_2d, InverseDFT_2d, LTI_Filter
 
 if __name__ == "__main__":
     x = Image.open('livingroom.tif').convert('L')
@@ -19,18 +18,6 @@ if __name__ == "__main__":
 
     print("E_det: {}".format(E_det))
 
-    # 5.
-    data = [['DFT 2d', np.log1p(np.abs(x_dft2d))],
-            ['fft2', np.log1p(np.abs(x_dft2d))],
-            ['shift DFT 2d', np.log1p(np.abs(np.fft.fftshift(x_dft2d)))],
-            ['shift fft2', np.log1p(np.abs(np.fft.fftshift(x_fft2)))]]
-
-    for i in range(len(data)):
-        plt.subplot(3, 2, i + 3)
-        plt.imshow(data[i][1], cmap='gray')
-        plt.title(data[i][0])
-        plt.colorbar()
-
     # 6.
     x_idft = InverseDFT_2d(x_dft2d)
     F = x_idft - x
@@ -39,15 +26,36 @@ if __name__ == "__main__":
 
     print("F_det: {}".format(F_det))
 
-    plt.subplot(3, 2, 1)
-    plt.imshow(x, cmap='gray')
-    plt.title('original image')
-    plt.colorbar()
+    x_lti_3 = LTI_Filter(x_dft2d, 2.5)
+    x_lti_01 = LTI_Filter(x_dft2d, 0.3)
 
-    plt.subplot(3, 2, 2)
-    plt.imshow(x_idft, cmap='gray')
-    plt.title('inverse DFT image')
-    plt.colorbar()
+    x_idft_3 = InverseDFT_2d(x_lti_3)
+    x_idft_01 = InverseDFT_2d(x_lti_01)
+
+    data = [['original image', x],
+            ['inverse DFT image', np.real(x_idft)],
+            ['shift DFT 2d', np.log1p(np.abs(np.fft.fftshift(x_dft2d)))],
+            ['shift fft2', np.log1p(np.abs(np.fft.fftshift(x_fft2)))]]
+
+    for i in range(len(data)):
+        plt.subplot(2, 2, i + 1)
+        plt.imshow(data[i][1], cmap='gray')
+        plt.title(data[i][0])
+        plt.colorbar()
 
     plt.tight_layout()
     plt.show()
+
+    # 실수부만 취하고, 반올림 후 uint8로 변환
+    x_idft_uint8 = np.round(np.real(x_idft_3)).astype(np.uint8)
+
+    # PIL 이미지 객체로 변환 후 저장
+    image = Image.fromarray(x_idft_uint8)
+    image.save("livingroom_idft_3_reconstructed.tiff")
+
+    # 실수부만 취하고, 반올림 후 uint8로 변환
+    x_idft_uint8 = np.round(np.real(x_idft_01)).astype(np.uint8)
+
+    # PIL 이미지 객체로 변환 후 저장
+    image = Image.fromarray(x_idft_uint8)
+    image.save("livingroom_idft_01_reconstructed.tiff")
