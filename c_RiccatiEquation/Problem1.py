@@ -18,14 +18,13 @@ if __name__ == "__main__":
 
     sol = solve_ivp(RiccatiEquation, [t[0], t[-1]], [x_0], t_eval=t)
     x_ref = sol.y[0]
-    tValid = sol.t
 
     plt.figure(figsize=(10, 5))
-    plt.plot(tValid, x_ref, label='solve_ivp (True)', linewidth=2)
-    plt.plot(tValid, x_euler_trim, '--', label='Euler')
-    plt.plot(tValid, x_heun_trim, '--', label='Heun')
-    plt.plot(tValid, x_RK2_trim, '--', label='RK2')
-    plt.title(f'Variable Comparison')
+    plt.plot(t, x_ref, label='solve_ivp (True)', linewidth=2)
+    plt.plot(t, x_euler_trim, '--', label='Euler')
+    plt.plot(t, x_heun_trim, '--', label='Heun')
+    plt.plot(t, x_RK2_trim, '--', label='RK2')
+    plt.title(f'Method Comparison')
     plt.xlabel('Time')
     plt.ylabel(f'x')
     plt.legend()

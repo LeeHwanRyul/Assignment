@@ -16,22 +16,23 @@ if __name__ == "__main__":
     x_heun = HeunMethod(RiccatiEquation, t, x_0)
     x_RK2 = RungeKutta2ndMethod(RiccatiEquation, t, x_0)
 
+
     sol = solve_ivp(RiccatiEquation, [t[0], t[-1]], [x_0], t_eval=t)
 
     validLen = len(sol.t)
 
+
     x_ref = sol.y[0]
-    tValid = sol.t
 
     x_euler_trim = x_euler[:validLen]
     x_heun_trim = x_heun[:validLen]
     x_RK2_trim = x_RK2[:validLen]
 
     plt.figure(figsize=(10, 5))
-    plt.plot(tValid, x_ref, label='solve_ivp (True)', linewidth=2)
-    plt.plot(tValid, x_euler_trim, '--', label='Euler')
-    plt.plot(tValid, x_heun_trim, '--', label='Heun')
-    plt.plot(tValid, x_RK2_trim, '--', label='RK2')
+    plt.plot(t, x_ref, label='solve_ivp (True)', linewidth=2)
+    plt.plot(t, x_euler_trim, '--', label='Euler')
+    plt.plot(t, x_heun_trim, '--', label='Heun')
+    plt.plot(t, x_RK2_trim, '--', label='RK2')
     plt.title(f'Method Comparison')
     plt.xlabel('Time')
     plt.ylabel(f'x')

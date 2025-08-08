@@ -25,17 +25,16 @@ if __name__ == "__main__":
 
     for i in range(3):
         x_ref = sol.y[i]
-        tValid = sol.t
 
         x_euler_trim = x_euler[:validLen, i]
         x_heun_trim = x_heun[:validLen, i]
         x_RK2_trim = x_RK2[:validLen, i]
 
         plt.figure(figsize=(10, 5))
-        plt.plot(tValid, x_ref, label='solve_ivp (True)', linewidth=2)
-        plt.plot(tValid, x_euler_trim, '--', label='Euler')
-        plt.plot(tValid, x_heun_trim, '--', label='Heun')
-        plt.plot(tValid, x_RK2_trim, '--', label='RK2')
+        plt.plot(t, x_ref, label='solve_ivp (True)', linewidth=2)
+        plt.plot(t, x_euler_trim, '--', label='Euler')
+        plt.plot(t, x_heun_trim, '--', label='Heun')
+        plt.plot(t, x_RK2_trim, '--', label='RK2')
         plt.title(f'{i + 1}th Variable Comparison')
         plt.xlabel('Time')
         plt.ylabel(f'x[{i}]')

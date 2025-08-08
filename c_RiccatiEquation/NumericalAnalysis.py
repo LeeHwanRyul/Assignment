@@ -1,6 +1,6 @@
 import numpy as np
 
-def EulerMethod(func, t, initialCondition):
+def Space(t, initialCondition):
     try:
         x = np.zeros_like(t)
 
@@ -10,6 +10,11 @@ def EulerMethod(func, t, initialCondition):
         dim = len(initialCondition)
         x = np.zeros((n, dim))
         x[0] = initialCondition
+
+    return x
+
+def EulerMethod(func, t, initialCondition):
+    x = Space(t, initialCondition)
 
     for k in range(len(t) - 1):
         t_k = t[k]
@@ -21,15 +26,7 @@ def EulerMethod(func, t, initialCondition):
     return x
 
 def HeunMethod(func, t, initialCondition):
-    try:
-        x = np.zeros_like(t)
-
-        x[0] = initialCondition
-    except:
-        n = len(t)
-        dim = len(initialCondition)
-        x = np.zeros((n, dim))
-        x[0] = initialCondition
+    x = Space(t, initialCondition)
 
     for k in range(len(t) - 1):
         t_k = t[k]
@@ -45,15 +42,7 @@ def HeunMethod(func, t, initialCondition):
     return x
 
 def RungeKutta2ndMethod(func, t, initialCondition):
-    try:
-        x = np.zeros_like(t)
-
-        x[0] = initialCondition
-    except:
-        n = len(t)
-        dim = len(initialCondition)
-        x = np.zeros((n, dim))
-        x[0] = initialCondition
+    x = Space(t, initialCondition)
 
     for k in range(len(t) - 1):
         t_k = t[k]
