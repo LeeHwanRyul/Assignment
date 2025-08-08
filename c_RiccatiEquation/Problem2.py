@@ -23,13 +23,26 @@ if __name__ == "__main__":
     x_ref = sol.y[0]
     tValid = sol.t
 
-    x_euler = x_euler[:validLen]
-    x_heun = x_heun[:validLen]
-    x_RK2 = x_RK2[:validLen]
+    x_euler_trim = x_euler[:validLen]
+    x_heun_trim = x_heun[:validLen]
+    x_RK2_trim = x_RK2[:validLen]
 
-    errorEuler = np.abs(x_ref - x_euler)
-    errorHeun = np.abs(x_ref - x_heun)
-    errorRK2 = np.abs(x_ref - x_RK2)
+    plt.figure(figsize=(10, 5))
+    plt.plot(tValid, x_ref, label='solve_ivp (True)', linewidth=2)
+    plt.plot(tValid, x_euler_trim, '--', label='Euler')
+    plt.plot(tValid, x_heun_trim, '--', label='Heun')
+    plt.plot(tValid, x_RK2_trim, '--', label='RK2')
+    plt.title(f'Method Comparison')
+    plt.xlabel('Time')
+    plt.ylabel(f'x')
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
+    errorEuler = np.abs(x_ref - x_euler_trim)
+    errorHeun = np.abs(x_ref - x_heun_trim)
+    errorRK2 = np.abs(x_ref - x_RK2_trim)
 
     print("Max Error (Euler) :", np.max(errorEuler))
     print("Max Error (Heun) :", np.max(errorHeun))

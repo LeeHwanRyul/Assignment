@@ -12,7 +12,7 @@ def HighODE(t, X):
     return np.array([dx1, dx2, dx3, dx4])
 
 if __name__ == "__main__":
-    t = np.linspace(0, 1, 1000)
+    t = np.linspace(0, 7, 1000)
 
     x_0 = [0.1, 0.2, 0.3, 0.5]
 
@@ -28,13 +28,26 @@ if __name__ == "__main__":
         x_ref = sol.y[i]
         tValid = sol.t
 
-        x_euler = x_euler[:validLen]
-        x_heun = x_heun[:validLen]
-        x_RK2 = x_RK2[:validLen]
+        x_euler_trim = x_euler[:validLen, i]
+        x_heun_trim = x_heun[:validLen, i]
+        x_RK2_trim = x_RK2[:validLen, i]
 
-        errorEuler = np.abs(x_ref - x_euler[:, i])
-        errorHeun = np.abs(x_ref - x_heun[:, i])
-        errorRK2 = np.abs(x_ref - x_RK2[:, i])
+        plt.figure(figsize=(10, 5))
+        plt.plot(tValid, x_ref, label='solve_ivp (True)', linewidth=2)
+        plt.plot(tValid, x_euler_trim, '--', label='Euler')
+        plt.plot(tValid, x_heun_trim, '--', label='Heun')
+        plt.plot(tValid, x_RK2_trim, '--', label='RK2')
+        plt.title(f'{i + 1}th Variable Comparison')
+        plt.xlabel('Time')
+        plt.ylabel(f'x[{i}]')
+        plt.legend()
+        plt.grid(True)
+        plt.tight_layout()
+        plt.show()
+
+        errorEuler = np.abs(x_ref - x_euler_trim)
+        errorHeun = np.abs(x_ref - x_heun_trim)
+        errorRK2 = np.abs(x_ref - x_RK2_trim)
 
         print(f"{i+1}th Max Error (Euler) :", np.max(errorEuler))
         print(f"{i+1}th Max Error (Heun) :", np.max(errorHeun))
