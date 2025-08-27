@@ -1,0 +1,80 @@
+_wandb:
+    value:
+        cli_version: 0.21.1
+        e:
+            gjavswtbs117y9gzc4htnpnhli82jxv4:
+                codePath: Assignment\d_MiniGrid_RL\main.py
+                codePathLocal: Assignment\d_MiniGrid_RL\main.py
+                cpu_count: 10
+                cpu_count_logical: 16
+                cudaVersion: "12.6"
+                disk:
+                    /:
+                        total: "1023250788352"
+                        used: "730679930880"
+                email: hellowryul@naver.com
+                executable: C:\Users\95101\anaconda3\envs\assignment\python.exe
+                gpu: NVIDIA GeForce RTX 3060
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ampere
+                      cudaCores: 3584
+                      memoryTotal: "12884901888"
+                      name: NVIDIA GeForce RTX 3060
+                      uuid: GPU-fea31d12-0396-5717-d9e2-bbae47dd43b2
+                host: DJKLSFJ
+                memory:
+                    total: "34137300992"
+                os: Windows-10-10.0.26100-SP0
+                program: c:\Assignment\Assignment\d_MiniGrid_RL\main.py
+                python: CPython 3.9.23
+                root: c:\Assignment
+                startedAt: "2025-08-19T18:33:49.195864Z"
+                writerId: gjavswtbs117y9gzc4htnpnhli82jxv4
+        m: []
+        python_version: 3.9.23
+        t:
+            "1":
+                - 1
+            "2":
+                - 1
+            "3":
+                - 16
+            "4": 3.9.23
+            "5": 0.21.1
+            "8":
+                - 3
+            "12": 0.21.1
+            "13": windows-amd64
+batch_size:
+    value: 32
+device:
+    value: cuda
+env_name:
+    value: MiniGrid-Custom
+episode_reward_avg_solved:
+    value: 5
+epsilon:
+    value: 0.95
+gamma:
+    value: 0.99
+is_evaluate:
+    value: true
+learning_rate:
+    value: 0.0001
+num_episodes:
+    value: 5000
+path2save_train_history:
+    value: train_history
+render_mode:
+    value: None
+replay_buffer_size:
+    value: 50000
+steps_between_train:
+    value: 1
+target_sync_step_interval:
+    value: 500
+train_num_episodes_before_next_test:
+    value: 100
+validation_num_episodes:
+    value: 1
