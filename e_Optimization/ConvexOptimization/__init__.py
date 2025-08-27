@@ -1,2 +1,3 @@
-from .quadratic import f, Convexity, GenerateMatrix
-# from .CVXPY import 
+from .Quadratic import f, Convexity, GenerateMatrix
+from .CVXPY import OptimalSolution
+from .GradientDescent import GradientDescent

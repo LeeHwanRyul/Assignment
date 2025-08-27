@@ -1,5 +1,6 @@
 import numpy as np
 from ConvexOptimization import Convexity, GenerateMatrix
+from ConvexOptimization import OptimalSolution
 
 if __name__ == "__main__":
     n = 1000
@@ -17,5 +18,10 @@ if __name__ == "__main__":
     else:
         print("Error: function isn't convexity")
         exit()
+
+    # 2. CVXPY package
+    # Obtimal Solution 
+    optSol, optCost = OptimalSolution(Q, b, n)
+    print("2. Obtimal Solution of CVXPY:", optCost)
 
     

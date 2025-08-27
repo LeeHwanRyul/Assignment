@@ -14,7 +14,6 @@ def Convexity(Q, b, trials=5):
         v = np.random.randn(n, 1)
         a = np.random.rand()
 
-
         if a*f(Q,b,u)+(1-a)*f(Q,b,v) >= f(Q,b,a*u+(1-a)*v):
             return True
     return False
