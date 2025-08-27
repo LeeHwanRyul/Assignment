@@ -53,27 +53,21 @@ if __name__ == "__main__":
     print("3. Obtimal Solution of GradientDescent:", optCost_NAG)
 
     # 6. plot
-    gd_norms = [optSol_CVXPY - x for x in optSol_GD]
-    sd_norms = [optSol_CVXPY - x for x in optSol_SD]
-    nag_norms = [optSol_CVXPY - x for x in optSol_NAG]
+    gd_norms = [np.linalg.norm(optSol_CVXPY - x) for x in optSol_GD]
+    sd_norms = [np.linalg.norm(optSol_CVXPY - x) for x in optSol_SD]
+    nag_norms = [np.linalg.norm(optSol_CVXPY - x) for x in optSol_NAG]
 
-    print(gd_norms)
+    fig, axs = plt.subplots(2, 1, figsize=(9, 9))
 
-    plt.plot(GD_plot, label="Gradient Descent")
-    plt.plot(SD_plot, label="Steepest Descent")
-    plt.plot(NAG_plot, label="Nesterov-2 Descent")
-    plt.legend()
-
-    fig, axs = plt.subplots(1, 3, figsize=(12, 6))
-
-    axs[0].plot(gd_norms, label="Gradient Descent")
+    axs[0].plot(GD_plot, label="Gradient Descent")
+    axs[0].plot(SD_plot, label="Steepest Descent")
+    axs[0].plot(NAG_plot, label="Nesterov-2 Descent")
     axs[0].legend()
 
+    axs[1].plot(gd_norms, label="Gradient Descent")
     axs[1].plot(sd_norms, label="Steepest Descent")
+    axs[1].plot(nag_norms, label="Nesterov-2 Descent")
     axs[1].legend()
-
-    axs[2].plot(nag_norms, label="Nesterov-2 Descent")
-    axs[2].legend()
 
     plt.tight_layout()
     plt.show()

@@ -4,6 +4,7 @@ from .Quadratic import f
 def GradientDescent(Q, b, alpha=0.001, n=1000, tol=1e-5):
     x = np.zeros((Q.shape[0], 1))
     costs = []
+    x_list = [x.copy()]
     
     for i in range(n):
         grad = Q @ x - b
@@ -12,13 +13,15 @@ def GradientDescent(Q, b, alpha=0.001, n=1000, tol=1e-5):
         x = x - alpha * grad
 
         cost = f(Q, b, x)
+        x_list.append(x.copy())
         costs.append(cost.item())
 
-    return x, f(Q, b, x), costs
+    return x_list, f(Q, b, x), costs
 
 def SteepestDescent(Q, b, n=1000, tol=1e-5):
     x = np.zeros((Q.shape[0], 1))
     costs = []
+    x_list = [x.copy()]
     
     for i in range(n):
         grad = Q @ x - b
@@ -30,6 +33,7 @@ def SteepestDescent(Q, b, n=1000, tol=1e-5):
         x = x - alpha * grad
 
         cost = f(Q, b, x)
+        x_list.append(x.copy())
         costs.append(cost.item())
 
-    return x, f(Q, b, x), costs
+    return x_list, f(Q, b, x), costs
