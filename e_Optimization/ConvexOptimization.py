@@ -2,6 +2,7 @@ import numpy as np
 from ConvexOptimization import Convexity, GenerateMatrix
 from ConvexOptimization import OptimalSolution
 from ConvexOptimization import GradientDescent, SteepestDescent
+from ConvexOptimization import Nesterov
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
@@ -27,14 +28,24 @@ if __name__ == "__main__":
     print("2. Obtimal Solution of CVXPY:", optCost_CVXPY)
 
     # 3. Gradient Descent algorithm
+    # x_k+1 = x_k - alpha * nabla f(x_k)
     alpha = 0.0001
     n = 10000
     optSol_GD, optCost_GD, GD_plot = GradientDescent(Q, b, alpha, n)
     print("3. Obtimal Solution of GradientDescent:", optCost_GD)
 
     # 4. Steepest Gradient Descent algorithm
+    # x_k+1 = x_k - alpha * nabla f(x_k)
+    # alpha = ||nabla f(x_k)||^2 / nabla f(x_k).T @ Q @ nabla f(x_k)
     n = 10000
     optSol_SD, optCost_SD, SD_plot = SteepestDescent(Q, b, n)
     print("4. Obtimal Solution of SteepestDescent:", optCost_GD)
 
     # 5. Nesterov-2 algorithm
+    # v_t = gamma*v_{t-1}+alpha*nabla*J(theta-gamma*v_{t-1})
+    # gamma: momentum 계수
+    # alpha: learning rate
+    alpha = 0.0001
+    n = 10000
+    optSol_NAG, optCost_NAG, NAG_plot = Nesterov(Q, b, alpha, n)
+    print("3. Obtimal Solution of GradientDescent:", optCost_NAG)
