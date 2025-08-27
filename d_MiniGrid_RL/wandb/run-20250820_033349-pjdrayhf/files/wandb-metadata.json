@@ -1,0 +1,36 @@
+{
+  "os":  "Windows-10-10.0.26100-SP0",
+  "python":  "CPython 3.9.23",
+  "startedAt":  "2025-08-19T18:33:49.195864Z",
+  "program":  "c:\\Assignment\\Assignment\\d_MiniGrid_RL\\main.py",
+  "codePath":  "Assignment\\d_MiniGrid_RL\\main.py",
+  "codePathLocal":  "Assignment\\d_MiniGrid_RL\\main.py",
+  "email":  "hellowryul@naver.com",
+  "root":  "c:\\Assignment",
+  "host":  "DJKLSFJ",
+  "executable":  "C:\\Users\\95101\\anaconda3\\envs\\assignment\\python.exe",
+  "cpu_count":  10,
+  "cpu_count_logical":  16,
+  "gpu":  "NVIDIA GeForce RTX 3060",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "1023250788352",
+      "used":  "730679930880"
+    }
+  },
+  "memory":  {
+    "total":  "34137300992"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 3060",
+      "memoryTotal":  "12884901888",
+      "cudaCores":  3584,
+      "architecture":  "Ampere",
+      "uuid":  "GPU-fea31d12-0396-5717-d9e2-bbae47dd43b2"
+    }
+  ],
+  "cudaVersion":  "12.6",
+  "writerId":  "gjavswtbs117y9gzc4htnpnhli82jxv4"
+}
