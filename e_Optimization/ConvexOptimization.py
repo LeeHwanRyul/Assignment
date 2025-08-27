@@ -1,10 +1,12 @@
 import numpy as np
 from ConvexOptimization import Convexity, GenerateMatrix
 from ConvexOptimization import OptimalSolution
+from ConvexOptimization import GradientDescent, SteepestDescent
+import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
     n = 1000
-    rho = 0.001
+    rho = 5
 
     Q = GenerateMatrix(n, rho)
     b = np.random.randn(n, 1)
@@ -21,7 +23,18 @@ if __name__ == "__main__":
 
     # 2. CVXPY package
     # Obtimal Solution 
-    optSol, optCost = OptimalSolution(Q, b, n)
-    print("2. Obtimal Solution of CVXPY:", optCost)
+    optSol_CVXPY, optCost_CVXPY = OptimalSolution(Q, b, n)
+    print("2. Obtimal Solution of CVXPY:", optCost_CVXPY)
 
-    
+    # 3. Gradient Descent algorithm
+    alpha = 0.0001
+    n = 10000
+    optSol_GD, optCost_GD, GD_plot = GradientDescent(Q, b, alpha, n)
+    print("3. Obtimal Solution of GradientDescent:", optCost_GD)
+
+    # 4. Steepest Gradient Descent algorithm
+    n = 10000
+    optSol_SD, optCost_SD, SD_plot = SteepestDescent(Q, b, n)
+    print("4. Obtimal Solution of SteepestDescent:", optCost_GD)
+
+    # 5. Nesterov-2 algorithm

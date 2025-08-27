@@ -1,2 +1,32 @@
-def GradientDescent():
-    pass
+import numpy as np
+from .Quadratic import f
+
+def GradientDescent(Q, b, alpha=0.001, n=1000, tol=1e-5):
+    x = np.zeros((Q.shape[0], 1))
+    cost = []
+    
+    for i in range(n):
+        grad = Q @ x - b
+        if np.linalg.norm(grad) < tol:
+            break
+        x = x - alpha * grad
+
+    return x, f(Q, b, x)
+
+def SteepestDescent(Q, b, n=1000, tol=1e-5):
+    x = np.zeros((Q.shape[0], 1))
+    costs = []
+    
+    for i in range(n):
+        grad = Q @ x - b
+        grad_norm = np.linalg.norm(grad)
+        if grad_norm < tol:
+            break
+
+        alpha = (grad_norm**2) / (grad.T @ Q @ grad) 
+        x = x - alpha * grad
+
+        cost = f(Q, b, x)
+        costs.append(cost.item())
+
+    return x, f(Q, b, x), costs

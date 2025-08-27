@@ -6,10 +6,9 @@ def f_cvxpy(Q, b, x):
 def OptimalSolution(Q, b, n):
     x = cp.Variable((n, 1))
     
-    obj = cp.Minimize(f_cvxpy(cp.psd_wrap(Q), b, x))
-    c = [x >= 0]
+    obj = cp.Minimize(f_cvxpy(Q, b, x))
 
-    prob = cp.Problem(obj, c)
+    prob = cp.Problem(obj)
     prob.solve()
 
     return x.value, prob.value
