@@ -6,6 +6,7 @@ from ConvexOptimization import Nesterov
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
+    listGD, listSD, listNAG = [], [], []
     n = 1000
     rho = 5
 
@@ -45,7 +46,34 @@ if __name__ == "__main__":
     # v_t = gamma*v_{t-1}+alpha*nabla*J(theta-gamma*v_{t-1})
     # gamma: momentum 계수
     # alpha: learning rate
+    gamma = 0.9
     alpha = 0.0001
     n = 10000
-    optSol_NAG, optCost_NAG, NAG_plot = Nesterov(Q, b, alpha, n)
+    optSol_NAG, optCost_NAG, NAG_plot = Nesterov(Q, b, gamma, alpha, n)
     print("3. Obtimal Solution of GradientDescent:", optCost_NAG)
+
+    # 6. plot
+    gd_norms = [optSol_CVXPY - x for x in optSol_GD]
+    sd_norms = [optSol_CVXPY - x for x in optSol_SD]
+    nag_norms = [optSol_CVXPY - x for x in optSol_NAG]
+
+    print(gd_norms)
+
+    plt.plot(GD_plot, label="Gradient Descent")
+    plt.plot(SD_plot, label="Steepest Descent")
+    plt.plot(NAG_plot, label="Nesterov-2 Descent")
+    plt.legend()
+
+    fig, axs = plt.subplots(1, 3, figsize=(12, 6))
+
+    axs[0].plot(gd_norms, label="Gradient Descent")
+    axs[0].legend()
+
+    axs[1].plot(sd_norms, label="Steepest Descent")
+    axs[1].legend()
+
+    axs[2].plot(nag_norms, label="Nesterov-2 Descent")
+    axs[2].legend()
+
+    plt.tight_layout()
+    plt.show()
